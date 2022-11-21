@@ -1,13 +1,18 @@
-import express from 'express';
-import helmet from 'helmet'
-import cors from 'cors'
+// import express from 'express';
+// import helmet from 'helmet'
+// import cors from 'cors'
+const express = require("express");
+const helmet = require("helmet");
+const cors = require("cors");
 
+const userRouter = require('./routes/users/userRouter');
 
 const server = express();
 
 server.use(helmet());
 server.use(cors());
 server.use(express.json());
+server.use('/users', logger, userRouter);
 
 
 server.get('/', logger, (req, res) => {
@@ -29,4 +34,5 @@ function logger(req, res, next) {
     next();
 }
 
-export default server;
+// export default server;
+module.exports = server;
