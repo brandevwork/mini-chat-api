@@ -1,4 +1,10 @@
+export {};
+// import express from 'express';
+// import bcrypt from 'bcrypt';
+
+// import dbUser from './userDB';
 const express = require("express");
+const bcrypt = require("bcrypt");
 
 const dbUser = require("./userDB");
 
@@ -6,7 +12,6 @@ const userRouter = express.Router();
 
 userRouter.get("/", getAllUsers);
 userRouter.get("/:id", validateUserId, getUserById);
-userRouter.post("/", createUser);
 userRouter.delete("/:id", validateUserId, deleteUser);
 userRouter.put("/:id", validateUserId, editUser);
 
@@ -21,14 +26,13 @@ function editUser(req: any, res: any) {
         message: "Could not Update User" + error,
       });
     });
-    // getUserById(req, res)
 }
 
 function getAllUsers(req: any, res: any) {
   dbUser
     .get()
     .then((user: any) => {
-      res.status(201).json(user);
+      res.status(200).json(user);
     })
     .catch((error: any) => {
       res.status(500).json({
@@ -41,18 +45,6 @@ function getUserById(req: any, res: any) {
   res.json(req.user);
 }
 
-function createUser(req: any, res: any) {
-  dbUser
-    .create(req.body)
-    .then((user: any) => {
-      res.status(201).json(user);
-    })
-    .catch((error: any) => {
-      res.status(500).json({
-        message: "Error adding the new user: " + error.message,
-      });
-    });
-}
 
 function deleteUser(req: any, res: any) {
   dbUser.remove(req.user.id).then(() => {

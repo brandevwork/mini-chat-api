@@ -1,7 +1,9 @@
+export {};
 const db = require("../../data/dbConfig.js");
 
 module.exports = {
   get,
+  getBy,
   getById,
   create,
   update,
@@ -10,6 +12,9 @@ module.exports = {
 
 function get() {
   return db("users").select("id", "username", "email");
+}
+function getBy(filter: any) {
+  return db("users").where(filter);
 }
 
 function getById(id: any) {
