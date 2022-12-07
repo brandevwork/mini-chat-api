@@ -1,7 +1,6 @@
-// import knex from 'knex'
+/* eslint-disable no-undef */
 const knex = require('knex');
 
-// import knexConfig from '../knexfile.js'
 const knexConfig = require('../knexfile.js');
 
 const dbEnv = process.env.DB_ENV || 'development';
