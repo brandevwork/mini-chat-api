@@ -1,2 +1,2 @@
-# Dependency directories
-node_modules/
+.env
+node_modules
