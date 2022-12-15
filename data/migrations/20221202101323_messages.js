@@ -4,7 +4,7 @@
  */
 exports.up = function (knex) {
   return knex.schema.createTable("messages", (messages) => {
-    messages.increments();
+    messages.increments('id');
     messages
       .string("username")
       .notNullable()
