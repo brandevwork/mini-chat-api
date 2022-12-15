@@ -16,10 +16,11 @@ messageRouter.post("/new-message", sendMessage);
 messageRouter.get("/message/:id", validateMessageId, getMessageById);
 
 function sendMessage(req: any, res: Response) {
+  const messageBody = req.body
   dbMessage
     .sendMessage(req.body)
-    .then((message: IMessage) => {
-      res.status(200).json(message);
+    .then(() => {
+      res.status(200).json({sentMessage: {username:messageBody.username, message:messageBody.message, room:messageBody.room}});
     })
     .catch((error: any) => {
       res.status(500).json(error.message);

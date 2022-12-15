@@ -1,6 +1,6 @@
 export {};
 import { IUser } from "../../interfaces/users";
-import { Request, Response, NextFunction } from 'express';
+import { Request, Response, NextFunction } from "express";
 
 const express = require("express");
 const bcrypt = require("bcrypt");
@@ -21,7 +21,13 @@ function createUser(req: Request, res: Response) {
     .create(userDetails)
     .then((user: IUser) => {
       const token = generateToken(user);
-      res.status(201).json({ user, token });
+      res
+        .status(201)
+        .json({
+          username: userDetails.username,
+          email: userDetails.email,
+          token,
+        });
     })
     .catch((error: Error) => {
       res.status(500).json({

@@ -25,9 +25,6 @@ function getMessageById(id: number) {
 function sendMessage(message: IMessage) {
   return db("messages")
     .insert(message)
-    .then((id: any) => {
-      return getMessageById(id[0]);
-    });
 }
 
 function remove(id: number) {
