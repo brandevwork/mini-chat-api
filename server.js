@@ -119,8 +119,8 @@ server.get("/", logger, (req, res) => {
   res.send(`<h2>Server is Live! </h2>`);
 });
 
-socketServer.listen(5056, function () {
-  console.log("Listening on *:" + process.env.PORT);
+socketServer.listen(process.env.SOCKET_PORT, function () {
+  console.log("SOCKET Listening on *:" + process.env.SOCKET_PORT);
 });
 
 // Middleware
